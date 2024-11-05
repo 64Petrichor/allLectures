@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 int zerosq (int n) {
-    if (n%10 != 0) { //last digit isn't zero
-        zerosq(n/10);
-    }
-    else if (n == n%10 && n != 0) { //last digit isn't zero and one digit left
+    if (n == n%10 && n != 0) { //last digit isn't zero and one digit left
         printf("no zeros here\n");
         return 0;
     }
-    else { //last digit is zero
-        printf("zeros here!!\n");
-        return 1;
+    if (n%10 == 0) { 
+        printf("zeros here\n");
+        return 0;
+    }
+    else if (n%10 != 0) { //last digit isn't zero, but there's more digits
+        zerosq(n/10);
     }
 }
 
@@ -29,7 +29,7 @@ int loopzerosq (int n) {
 }
 
 int main () {
-    int n = 1738;
+    int n = 17380;
     zerosq(n);
     loopzerosq(n);
     return 0;
