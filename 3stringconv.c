@@ -53,6 +53,6 @@ int main () {
     strcpy(malstr4, "abcdef");
     strncpy(malstr4, "uvwxyz", 4);
 
-    printf("%s\n%s\n%s\n%s\n", malstr1, malstr2, malstr3, malstr4);
+    printf("\n%s\n%s\n%s\n%s\n", malstr1, malstr2, malstr3, malstr4);
     return 0;
 }
