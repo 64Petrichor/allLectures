@@ -2,7 +2,7 @@
 #include <string.h>
 
 int main () {
-    int x [2][2] = {1,2,3,4}, y[2][2] = {9,8,7,6}, size = 2, z[2][2];
+    int x [2][2] = {5,4,3,2}, y[2][2] = {10,10,10,10}, size = 2, z[2][2];
     
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
