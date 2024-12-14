@@ -1,67 +1,91 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+
 
 struct node {
     int data;
     struct node* next;
 };
 
+// Function to print the linked list
 void printlinkedlist(struct node* head) {
     struct node* current = head;
     while (current != NULL) {
         printf("%d ", current->data);
         current = current->next;
-    } printf("\n");
+    }
+    printf("\n");
+}
+
+// Function to add a node at the end of the linked list
+void addNodeToTail(struct node** head, int data) {
+    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = data;
+    newnode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newnode;
+        return;
+    }
+
+    struct node* current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newnode;
+}
+
+// Function to add a node in the middle of the linked list
+void addNodeToMiddle(struct node* head, int data, int position) {
+    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = data;
+    newnode->next = NULL;
+
+    struct node* temp = head;
+    for (int i = 0; i < position - 1; i++) {
+        if (temp == NULL) return; // Safety check
+        temp = temp->next;
+    }
+    newnode->next = temp->next;
+    temp->next = newnode;
 }
 
 int main() {
     int nodecount;
-    printf("enter number of nodes: ");
+    printf("Enter number of nodes: ");
     scanf("%d", &nodecount);
-    if (nodecount <= 0) {printf("nodes <= 0, invalid"); return 0;}
 
-    int cin;
-    printf("enter node 1 data: ");
-    scanf("%d", &cin);
-    struct node* node = (struct node*)malloc(sizeof(struct node));
-    struct node* head = node;
-    node->data = cin;
-    node->next = NULL;
-    
-    //add nodes to the tail
-    struct node* prevnode = head;
-    for (int i = 2; i <= nodecount; i++) {
-        printf("enter node %d data: ", i);
-        scanf("%d", &cin);
-        node = (struct node*)malloc(sizeof(struct node));
-        node->data = cin;
-        node->next = NULL;
-        prevnode->next = node; // puts the address of the newly craeted node in the next of the last node made
-        prevnode = node; //makes the prevnode point to the newly created node
+    if (nodecount <= 0) {
+        printf("nodes <= 0, invalid\n");
+        return 0;
     }
 
-    //print linked list
-    printf("linked list: "); 
+    // Create the head of the linked list
+    struct node* head = NULL;
+
+    // Add nodes to the tail
+    for (int i = 1; i <= nodecount; i++) {
+        int data;
+        printf("Enter node %d data: ", i);
+        scanf("%d", &data);
+        addNodeToTail(&head, data);
+    }
+
+    // Print the linked list
+    printf("Linked list: ");
     printlinkedlist(head);
 
-    //add node in the middle
-    int cinmiddle, pos = nodecount / 2;
-    printf("enter the data you want to put exactly in the middle: ");
+    // Add a node to the middle
+    int cinmiddle;
+    printf("Enter the data you want to put exactly in the middle: ");
     scanf("%d", &cinmiddle);
-    struct node* newnode = (struct node*)malloc(sizeof(struct node));
-    struct node* temp = head;
-    newnode->data = cinmiddle;
-    newnode->next = NULL;
-    for (int i = 0; i < pos-1; i++) temp = temp->next;
-    newnode->next = temp -> next;
-    temp->next = newnode;
+    addNodeToMiddle(head, cinmiddle, nodecount / 2);
 
-    //print linked list
-    printf("linked list: "); 
+    // Print the updated linked list
+    printf("Linked list: ");
     printlinkedlist(head);
 
-    //erase
+    // Free allocated memory
     struct node* current = head;
     struct node* nxtnode = NULL;
     while (current != NULL) {
@@ -69,14 +93,6 @@ int main() {
         free(current);
         current = nxtnode;
     }
-    head = NULL;
-    node = NULL;
-
-
-
-
-
-
 
     return 0;
 }

@@ -16,6 +16,7 @@ void printlinkedlist(struct node* head) {
 }
 
 int main() {
+    //in this file, we're
     struct node* head = NULL;
     struct node* n1 = (struct node*)malloc(sizeof(struct node));
     struct node* n2 = (struct node*)malloc(sizeof(struct node));
@@ -31,12 +32,14 @@ int main() {
 
     printlinkedlist(head);
 
+    free(n1);
+    free(n2);
+    free(n3);
+    //setting the nodes to NULL isn't neccesary isn't needed,
+    //it jsut makes catching mistakes like allocating freed memory easier (it would jsut crash instead of continuing)
+    n1 = NULL;
+    n2 = NULL;
+    n3 = NULL;
+
     return 0;
 }
-/*
-
-
-
-
-
-*/
