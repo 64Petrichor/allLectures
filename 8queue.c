@@ -40,7 +40,7 @@ void queuedisplay(struct que* q) {
     else {
         printf("The queue is: ");
         temp = q->front;
-        while (temp) {
+        while (temp != NULL) {
             printf("%d ", temp->data);
             temp = temp->next;
         }
