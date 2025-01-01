@@ -2,8 +2,8 @@
 
 int fein (int n) {
     if (n <= 1) return 1;
-    return n * fein(n-1);
-}
+    return n * fein(n-1); 
+} //if n = 3, fein(3) = 3 * fein(2) = 3 * 2 * fein(1) = 3 * 2 * 1 = 6
 
 int feinloop (int n) {
     int fac = 1;

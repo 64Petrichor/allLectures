@@ -4,7 +4,7 @@
 int fibb(int n) {
     if (n <= 1) return n;
     else return fibb(n - 1) + fibb(n - 2);
-}
+} // follwsthe basic definition of the fibbonachi sequence is
 
 int loopfibb(int n) {
     int * arr = (int *) calloc(n, sizeof(int));
@@ -15,7 +15,7 @@ int loopfibb(int n) {
         arr[i] = arr[i-1] + arr[i-2];
         printf("%d ", arr[i]);
     }
-}
+} // starts with the first two numbers in the sequence, and keeps adding and printing the next number in the sequence till it reaches the desired number of terms
 
 int main() {
     int n;
